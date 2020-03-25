@@ -13,7 +13,7 @@ Hint:  it doe snto have to be real time.  Almost realtime is ok.
 * I, a secretary, would like to record the text of a meeting automatically.
 
 ### Structure
-
+![architecture](architecture.png)
 
 ### License
 noracnr@bu.edu
