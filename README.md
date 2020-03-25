@@ -1,6 +1,10 @@
-# Live-multi-lingual-communication
+# Live-multi-lingual-communication(Team 6)
 This program is going to use WebRTC and google cloud APIs to build a peer to peer (audio and video) call application. And provide functions like speech-to-text conversion, text/audio translation and text recording to make it more convenient for cross-language communication.
 
+## Team Member
+Yingqi Zhang : yqz2019@bu.edu
+
+Ningrong Chen : noracnr@bu.edu
 ### User Story
 * I, a worker who wfh, would like to mute the audio but still know the content of an online meeting when I receive a phone call.
 * I, an owner of a foreign commerce startup company, would like to use this app to communicate with my foreign traders.
@@ -15,8 +19,3 @@ This program is going to use WebRTC and google cloud APIs to build a peer to pee
 
 ### Structure
 ![architecture](architecture.png)
-
-### License
-noracnr@bu.edu
-
-yqz2019@bu.edu
