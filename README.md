@@ -5,7 +5,7 @@ This program is going to use WebRTC and google cloud APIs to build a peer to pee
 Yingqi Zhang : yqz2019@bu.edu
 
 Ningrong Chen : noracnr@bu.edu
-### User Story
+## User Story
 * I, a worker who wfh, would like to mute the audio but still know the content of an online meeting when I receive a phone call.
 * I, an owner of a foreign commerce startup company, would like to use this app to communicate with my foreign traders.
 * I, having reading disability, would like to hear the translation rather than reading it.
@@ -19,3 +19,6 @@ Ningrong Chen : noracnr@bu.edu
 
 ### Structure
 ![architecture](architecture.png)
+
+### Updates
+add react app in branch <a href="https://github.com/Bunny-Nora/Live-multi-lingual-communication/tree/reach">[react]</a> .
