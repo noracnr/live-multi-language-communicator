@@ -24,3 +24,12 @@ This is a work in progress. If you find a mistake or have a suggestion, please [
 ## For 'step-04', 'step-05', 'step-06'
 
 Run `npm install` before running the code.
+
+# What I have learned yet
+* Get a mediastream(video,audio) from your webcam.
+* Manipulate stream playback.
+* Use the RTCPeerConnection API to stream video.
+* How to exchange data between WebRTC endpoints (peers).
+* STUN, TURN servers: https://www.html5rocks.com/en/tutorials/webrtc/infrastructure/
+* Run a WebRTC signaling service using Socket.IO running on Node.js
+* Use that service to exchange WebRTC metadata between peers.

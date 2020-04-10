@@ -90,12 +90,19 @@ socket.on('message', function(message) {
 
 ////////////////////////////////////////////////////
 
-var localVideo = document.querySelector('#localVideo');
-var remoteVideo = document.querySelector('#remoteVideo');
+var localVideo = document.getElementById('localVideo');
+var remoteVideo = document.getElementById('remoteVideo');
 
 navigator.mediaDevices.getUserMedia({
-  audio: false,
-  video: true
+  video: {
+    width: { min: 640, ideal: 1920 },
+    height: { min: 400, ideal: 1080 },
+    aspectRatio: { ideal: 1.7777777778 }
+  },
+  audio: {
+    echoCancellation: true,
+    noiseSuppression: true
+  }
 })
 .then(gotStream)
 .catch(function(e) {
@@ -113,6 +120,7 @@ function gotStream(stream) {
 }
 
 var constraints = {
+  audio: true,
   video: true
 };
 
