@@ -1,6 +1,11 @@
 # Live-multi-lingual-communication(Team 6)
 This program is going to use WebRTC and google cloud APIs to build a peer to peer (audio and video) call application. And provide functions like speech-to-text conversion, text/audio translation and text recording to make it more convenient for cross-language communication.
 
+### Updates
+* [3.30]: add react app in branch <a href="https://github.com/Bunny-Nora/Live-multi-lingual-communication/tree/reach">[react]</a> .
+* [4.10]: <a href="https://github.com/Bunny-Nora/Live-multi-lingual-communication/tree/webrtc">Achieve WebRTC p2p communication with socket.io </a>
+
+
 ## Team Member
 Yingqi Zhang : yqz2019@bu.edu
 
@@ -20,5 +25,3 @@ Ningrong Chen : noracnr@bu.edu
 ### Structure
 ![architecture](architecture.png)
 
-### Updates
-add react app in branch <a href="https://github.com/Bunny-Nora/Live-multi-lingual-communication/tree/reach">[react]</a> .
