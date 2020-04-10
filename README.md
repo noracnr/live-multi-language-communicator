@@ -26,10 +26,10 @@ Ningrong Chen : noracnr@bu.edu
 ![architecture](architecture.png)
 
 ### Reference
-https://webrtc.github.io/samples/
-https://tsh.io/blog/how-to-write-video-chat-app-using-webrtc-and-nodejs/
-https://github.com/muaz-khan/WebRTC-Experiment
-https://webrtc.org/
-https://github.com/muaz-khan/RTCMultiConnection
-https://rtcmulticonnection.herokuapp.com/demos/
+* https://webrtc.github.io/samples/
+* https://tsh.io/blog/how-to-write-video-chat-app-using-webrtc-and-nodejs/
+* https://github.com/muaz-khan/WebRTC-Experiment
+* https://webrtc.org/
+* https://github.com/muaz-khan/RTCMultiConnection
+* https://rtcmulticonnection.herokuapp.com/demos/
 
