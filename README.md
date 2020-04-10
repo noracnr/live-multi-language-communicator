@@ -22,6 +22,4 @@ node index.js
 * Buttons and text translator are not implemented yet.( Wait for speech to text ) 
 
 ### Reference
-This code has the resources you need for the codelab [Realtime communication with WebRTC](https://codelabs.developers.google.com/codelabs/webrtc-web/#0).
-
-This is a work in progress. If you find a mistake or have a suggestion, please [file an issue](https://github.com/googlecodelabs/webrtc-web/issues). Thanks!
+[Realtime communication with WebRTC](https://codelabs.developers.google.com/codelabs/webrtc-web/#0).
