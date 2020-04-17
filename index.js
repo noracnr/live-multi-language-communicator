@@ -4,11 +4,18 @@ var os = require('os');
 var nodeStatic = require('node-static');
 var http = require('http');
 var socketIO = require('socket.io');
+// Imports the Google Cloud client library
+const speech = require('@google-cloud/speech');
+
+// Creates a client
+var client = new speech.SpeechClient();
 
 var fileServer = new(nodeStatic.Server)();
 var app = http.createServer(function(req, res) {
   fileServer.serve(req, res);
-}).listen(8080);
+}).listen(8080, () => {
+  console.log('listening on *:8080');
+});
 
 var io = socketIO.listen(app);
 io.sockets.on('connection', function(socket) {
@@ -35,7 +42,7 @@ io.sockets.on('connection', function(socket) {
 
     if (numClients === 0) {
       socket.join(room);
-      log('Client ID ' + socket.id + ' created room ' + room);
+      log('Client ID' + socket.id + ' created room ' + room);
       socket.emit('created', room, socket.id);
 
     } else if (numClients === 1) {
@@ -62,6 +69,21 @@ io.sockets.on('connection', function(socket) {
 
   socket.on('bye', function(){
     console.log('received bye');
+  });
+
+  socket.on('subtitles request', function(message, toroom, language) {
+    log('add subtitles to ' + toroom);
+
+    var clientsInRoom = io.sockets.adapter.rooms[toroom];
+    var numClients = clientsInRoom ? Object.keys(clientsInRoom.sockets).length : 0;
+
+    if (numClients === 0) {
+      console.log(new Date(), ' this is the first room without need ', socket)
+
+    } else if (numClients === 1) {
+      log('Client ID ' + socket.id + ' subtitles request' + toroom);
+      socket.emit('subtitles request', message, numClients, language);
+    }
   });
 
 });

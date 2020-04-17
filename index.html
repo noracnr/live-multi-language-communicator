@@ -23,8 +23,8 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta itemprop="name" content="GitHub Pages site for Google codelab: Realtime communication with WebRTC">
   <meta name="mobile-web-app-capable" content="yes">
-
-
+  <link rel="shortcut icon" href="#">
+  <meta charset="UTF-8">
   <base target="_blank">
 
   <title>Realtime communication with WebRTC</title>
@@ -36,36 +36,52 @@
 </head>
 
 <body class="body-bg">
-  <h1>Google codelab:<br>Realtime communication with WebRTC</h1>
 
-  
-<div id="container" class="container">
-  <div class="row">
-    <div class="col">
+<div id="root">
+  <div class="video-wrapper">
+    <div class="localMedia">
       <video id="localVideo" autoplay playsinline>display the stream from getUserMedia()</video>  
-      <textarea id="dataChannelSend" disabled placeholder="Press Start, enter some text, then press Send."></textarea>
+      <!-- <textarea id="dataChannelSend" disabled placeholder="Press Start, enter some text, then press Send."></textarea> -->
     </div>
-    <div class="col">
-      <video id="remoteVideo" autoplay playsinline>show the same video streamed via RTCPeerconnection.</video>
-      <textarea id="dataChannelReceive" disabled></textarea>
+    <video id="remoteVideo" autoplay playsinline>show the same video streamed via RTCPeerconnection.</video>
+    <!-- <textarea id="dataChannelReceive" disabled></textarea> -->
+  </div>
+  <div id="container" class="container">
+    <div class="row">
+      <div class="col-12  col-sm-4">
+        <button id="startButton" class="rounded-pill">speech recognition abort</button>
+      </div>
+      <div class="col-12 col-sm-4">
+        <!-- <button id="callButton" class="rounded-pill">Call</button> -->
+        <!-- <button id="sendButton">Send</button> -->
+        <div>Your language is: <span class="uk-icon-info-circle" data-uk-tooltip="" title="Please, select the language you are speaking right now"></span></div>
+                        
+                        <select id="languageSelector" onchange="updateLanguage()">
+                            <option value="en">English</option>
+                            <option value="cmn">中文</option>
+                            <option value="es">Español</option>
+                            <option value="fr">Français</option>
+                            <option value="it">Italiano</option>
+                            <option value="hu">Magyar</option>
+                            <option value="no">Norsk</option>
+                            <option value="pl">Polski</option>
+                            <option value="pt">Português</option>
+                            <option value="sv">Svenska</option>
+                            <option value="ar">العربية</option>
+                            <option value="he">עברית</option>
+                            <option value="ja">日本語</option>
+                            <option value="ko">한국어</option>
+                            <option value="ru">Pусский</option>
+                        </select>
+      </div>
+      <div class="col-12 col-sm-4">
+        <!-- <button id="hangupButton" class="rounded-pill">Hang Up</button> -->
+        <!-- <button id="closeButton">Stop</button> -->
+        <div class="speechRecognitionIndicatorOff" id="speechRecognitionIndicator">Speech Recognition Indicator <span class="uk-icon-info-circle" data-uk-tooltip="" title="Your speech is being used for providing real-time captioning"></span></div>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12  col-sm-4">
-      <button id="startButton" class="rounded-pill">Start</button>
-    </div>
-    <div class="col-12 col-sm-4">
-      <!-- <button id="callButton" class="rounded-pill">Call</button> -->
-      <button id="sendButton">Send</button>
-    </div>
-    <div class="col-12 col-sm-4">
-      <!-- <button id="hangupButton" class="rounded-pill">Hang Up</button> -->
-      <button id="closeButton">Stop</button>
-    </div>
-  </div>
-
-  
-
+</div>
   <!-- socket.io -->
   <script src="/socket.io/socket.io.js"></script>
   <!-- adapter.js is a shim to insulate apps from spec changes and prefix differences. 
@@ -78,6 +94,8 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <!-- self-define js -->
-  <script src="js/main5.js"></script>
+  <script src="speech2text.js"></script>
+  <script src="main5.js"></script>
+  
 </body>
 </html>
