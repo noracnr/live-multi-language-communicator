@@ -11,6 +11,7 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 
+
 var pcConfig = {
   'iceServers': [{
     'urls': 'stun:stun.l.google.com:19302'
@@ -26,14 +27,15 @@ var sdpConstraints = {
 /////////////////////////////////////////////
 // Socket Events:
 
-var room = 'foo';
+var username = location.pathname.split('&username=')[1];
+var room = location.pathname.split('&username=')[0].split('/room')[1];
 // Could prompt for room name:
-// room = prompt('Enter room name:');
+// var room = prompt('Enter room name:');
 
 var socket = io.connect();
 
 if (room !== '') {
-  socket.emit('create or join', room);
+  socket.emit('create or join',username, room);
   console.log('Attempted to create or  join room', room);
 }
 
@@ -314,74 +316,77 @@ var languagesIndex = {
     'ru': 14, 'ru-RU': 14
 };
 
-console.log('User\'s browser language is ', navigator.language);
-if (languagesIndex[navigator.language] === undefined) {
-  languageSelector.options.seletedIndex = 1;
-  console.log('Setting local language to English');
-} else {
-  languageSelector.options.seletedIndex = languagesIndex[navigator.language];
-  console.log('Setting language to', languageSelector.selectedOptions[0].text);
-}
 
-if (('webkitSpeechRecognition' in window)) {
-  var recognition = new SpeechRecognition();
-  recognition.continuous = true;
-  recognition.interimResults = true;
-  recognition.lang = languageSelector.selectedOptions[0].value;
 
-  recognition.onstart = function() {
-    speechRecognitionIndicator.classList.remove('speechRecognitionIndicatorOff');
-    speechRecognitionIndicator.classList.add('speechRecognitionIndicatorOn');
-    isSpeechRecognitionEnabled = true;
-    // Speech recognition initiation so no later permissions are required
-    if (isSpeechRecognitionInitiated === false) {
-      recognition.stop();
-      isSpeechRecognitionInitiated = true;
-    }
-  };
+// console.log('User\'s browser language is ', navigator.language);
+// if (languagesIndex[navigator.language] === undefined) {
+//   languageSelector.options.seletedIndex = 1;
+//   console.log('Setting local language to English');
+// } else {
+//   languageSelector.options.seletedIndex = languagesIndex[navigator.language];
+//   console.log('Setting language to', languageSelector.selectedOptions[0].text);
+// }
 
-  recognition.onresult = function(event) {
-        var transcription = '';
-        for (var i = event.resultIndex; i < event.results.length; ++i) {
-            transcription += event.results[i][0].transcript;
-        }
-        console.log('transcription', transcription);
-  };
+// if (('webkitSpeechRecognition' in window)) {
+//   var recognition = new SpeechRecognition();
+//   recognition.continuous = true;
+//   recognition.interimResults = true;
+//   recognition.lang = languageSelector.selectedOptions[0].value;
 
-  recognition.onerror = function(error) {
-    console.error('Speech recognition error:', error);
-    if (error.error === 'aborted') {
-      isSpeechRecognitionCrashed = true;
-      alert('Speech recognition aborted. Only one instance per client is supported.');
-      // TODO
-      //window.location = '/error.html';
-    }
-  };
+//   recognition.onstart = function() {
+//     speechRecognitionIndicator.classList.remove('speechRecognitionIndicatorOff');
+//     speechRecognitionIndicator.classList.add('speechRecognitionIndicatorOn');
+//     isSpeechRecognitionEnabled = true;
+//     // Speech recognition initiation so no later permissions are required
+//     if (isSpeechRecognitionInitiated === false) {
+//       recognition.stop();
+//       isSpeechRecognitionInitiated = true;
+//     }
+//   };
 
-  recognition.onend = function() {
-    recognition.stop();
-    speechRecognitionIndicator.classList.add('speechRecognitionIndicatorOff');
-    speechRecognitionIndicator.classList.remove('speechRecognitionIndicatorOn');
-    isSpeechRecognitionEnabled = false;
-    console.log('Speech recognition has stopped.');
-    keepSpeechRecognitionAliveIfNeeded();
-  }
-}
+//   recognition.onresult = function(event) {
+//         var transcription = '';
+//         for (var i = event.resultIndex; i < event.results.length; ++i) {
+//             transcription += event.results[i][0].transcript;
+//         }
+//         console.log('transcription', transcription);
+//   };
 
-// Keeps the speech recognition alive
-function keepSpeechRecognitionAliveIfNeeded() {
-  if (!isSpeechRecognitionCrashed) {
-    if (isSpeechRecognitionEnabled === false) {
-      recognition.start();
-      console.log('Keeping speech recognition alive');
-    }
-  }
-}
+//   recognition.onerror = function(error) {
+//     console.error('Speech recognition error:', error);
+//     if (error.error === 'aborted') {
+//       isSpeechRecognitionCrashed = true;
+//       alert('Speech recognition aborted. Only one instance per client is supported.');
+//       // TODO
+//       //window.location = '/error.html';
+//     }
+//   };
 
-// Updates the local user's language
-function updateLanguage() {
-  recognition.lang = languageSelector.selectedOptions[0].value;
-  recognition.end();
-  console.log('Language changed to', languageSelector.selectedOptions[0].text);
-}
+//   recognition.onend = function() {
+//     speechRecognitionIndicator.classList.add('speechRecognitionIndicatorOff');
+//     speechRecognitionIndicator.classList.remove('speechRecognitionIndicatorOn');
+//     isSpeechRecognitionEnabled = false;
+//     console.log('Speech recognition has stopped.');
+//     keepSpeechRecognitionAliveIfNeeded();
+//   }
+// }
+
+// // Keeps the speech recognition alive
+// function keepSpeechRecognitionAliveIfNeeded() {
+//   if (!isSpeechRecognitionCrashed) {
+//     if (isSpeechRecognitionEnabled === false) {
+//       recognition.start();
+//       console.log('Keeping speech recognition alive');
+//     }
+//   }
+// }
+
+// // Updates the local user's language
+// function updateLanguage() {
+//   recognition.lang = languageSelector.selectedOptions[0].value;
+//   console.log('Language changed to', languageSelector.selectedOptions[0].text);
+//   recognition.stop();
+//   //try to give a bit delay and then start again with the same instance
+//   setTimeout(function(){ recognition.start(); }, 400);
+// }
 

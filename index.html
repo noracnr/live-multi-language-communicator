@@ -1,25 +1,8 @@
-<!--
- Copyright 2016 Google Inc.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
--->
-
 <!DOCTYPE html>
 <html>
 <head>
 
-  <meta name="description" content="Realtime communication with WebRTC" />
-  <meta name="author" content="//samdutton.com">
+  <meta name="description" content="info" />
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta itemprop="name" content="GitHub Pages site for Google codelab: Realtime communication with WebRTC">
   <meta name="mobile-web-app-capable" content="yes">
@@ -36,51 +19,30 @@
 </head>
 
 <body class="body-bg">
-
-<div id="root">
-  <div class="video-wrapper">
-    <div class="localMedia">
-      <video id="localVideo" autoplay playsinline>display the stream from getUserMedia()</video>  
-      <!-- <textarea id="dataChannelSend" disabled placeholder="Press Start, enter some text, then press Send."></textarea> -->
+<div style="text-align: center;
+            width: 350px;
+            height: 350px;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;">
+  <form class="container" id="access-form">
+    <div class="row align-items-start">
+        <label class="col-6">Username:</label>
+        <input type="text" id="username" class="col-6" />
     </div>
-    <video id="remoteVideo" autoplay playsinline>show the same video streamed via RTCPeerconnection.</video>
-    <!-- <textarea id="dataChannelReceive" disabled></textarea> -->
-  </div>
-  <div id="container" class="container">
-    <div class="row">
-      <div class="col-12  col-sm-4">
-        <button id="startButton" class="rounded-pill">speech recognition abort</button>
-      </div>
-      <div class="col-12 col-sm-4">
-        <!-- <button id="callButton" class="rounded-pill">Call</button> -->
-        <!-- <button id="sendButton">Send</button> -->
-        <div>Your language is: <span class="uk-icon-info-circle" data-uk-tooltip="" title="Please, select the language you are speaking right now"></span></div>
-                        
-                        <select id="languageSelector" onchange="updateLanguage()">
-                            <option value="en">English</option>
-                            <option value="cmn">中文</option>
-                            <option value="es">Español</option>
-                            <option value="fr">Français</option>
-                            <option value="it">Italiano</option>
-                            <option value="hu">Magyar</option>
-                            <option value="no">Norsk</option>
-                            <option value="pl">Polski</option>
-                            <option value="pt">Português</option>
-                            <option value="sv">Svenska</option>
-                            <option value="ar">العربية</option>
-                            <option value="he">עברית</option>
-                            <option value="ja">日本語</option>
-                            <option value="ko">한국어</option>
-                            <option value="ru">Pусский</option>
-                        </select>
-      </div>
-      <div class="col-12 col-sm-4">
-        <!-- <button id="hangupButton" class="rounded-pill">Hang Up</button> -->
-        <!-- <button id="closeButton">Stop</button> -->
-        <div class="speechRecognitionIndicatorOff" id="speechRecognitionIndicator">Speech Recognition Indicator <span class="uk-icon-info-circle" data-uk-tooltip="" title="Your speech is being used for providing real-time captioning"></span></div>
-      </div>
+    <div class="row align-items-center">
+      <label class="col-6">Room:   </label>
+      <input type="text" id="room" class="col-6"/>
     </div>
-  </div>
+    <div class="row align-items-end">
+        <label class="col-3"> </label>
+        <button class="col-6" type="button" onclick="goToRoom(username.value, room.value)">START</button>
+        <label class="col-3"> </label>
+    </div>
+  </form>
 </div>
   <!-- socket.io -->
   <script src="/socket.io/socket.io.js"></script>
@@ -95,7 +57,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <!-- self-define js -->
   <script src="speech2text.js"></script>
-  <script src="main5.js"></script>
+  <script src="index.js"></script>
   
 </body>
 </html>
